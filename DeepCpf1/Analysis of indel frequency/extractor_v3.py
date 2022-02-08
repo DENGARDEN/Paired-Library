@@ -1,6 +1,11 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
+
+# Original code is here, https://github.com/MyungjaeSong/Paired-Library.git
+# This is the modified version of the program to academic use in SKKUGE Lab
+
 __author__ = 'forestkeep21@naver.com'
+__editor__ = "poowooho3@g.skku.edu"
 
 import re
 import sys
@@ -13,6 +18,18 @@ BASE_DIR = os.path.dirname(sys.executable)
 
 
 def seq_validator(data):
+    """[summary]
+    
+    Find all "raw strings" that start with a or t or g or c (case-insensitive) and end with non-zero number of a or t or g or c (case-insensitive also)
+    
+    Args:
+        data ([type]): [description]
+
+    Returns:
+        [list]: [matching sequences]
+    """
+
+    # https://docs.python.org/3/library/re.html#re.findall
     m = re.findall(r'^[A|a|T|t|C|c|G|g]+$', data)
     return m[0] if m else None
 
@@ -28,7 +45,12 @@ def do(src_file_name, dest_file_name):
     # 프로그램 진행율을 계산하기 위해 파일의 라인수를 센다.
     src_line_cnt = count_line_in_file(src_file_name)
     if src_line_cnt == 0:
-        print u'File Not Found'
+        # original code -- Python 2.x 
+        # print u'File Not Found'
+
+        # Replaced the original part with the print 'function' in accordance with Python 3.x convention
+        # https://stackoverflow.com/questions/2464959/whats-the-u-prefix-in-a-python-string
+        print(u"File Not Found")
         raise
     current_cnt = 0
     extracted_line_index = []
@@ -83,11 +105,12 @@ def do(src_file_name, dest_file_name):
             # 프로그램 진행율 계산 부분
             current_cnt += 1
             progress_percentage = (float(current_cnt) / src_line_cnt * 100)
-            print u'{} %'.format(progress_percentage)
+            print ("{} %".format(progress_percentage))
 
     except Exception as e:
         print e
-        print u'Extraction Failure.'
+        # Replaced the original part with the print 'function' in accordance with Python 3.x convention
+        print ("Extraction Failure.")
         raise
 
     try:
