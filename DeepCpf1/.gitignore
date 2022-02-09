@@ -158,3 +158,4 @@ cython_debug/
 /src/
 *.gz
 
+*.DS_Store

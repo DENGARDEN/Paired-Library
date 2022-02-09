@@ -22,7 +22,7 @@ def seq_validator(data):
     return m[0].upper() if m else None
 
 
-def count_line_in_file(file_name):
+def count_lines_in_a_file(file_name):
     # 파일내 라인 카운터
     count = 0
     for line in open(file_name, 'r'):
@@ -32,7 +32,7 @@ def count_line_in_file(file_name):
 
 def do(input_file_name, backward_target_length, dest_folder_path):
     cur_cnt = 0
-    target_cnt = count_line_in_file(input_file_name)
+    target_cnt = count_lines_in_a_file(input_file_name)
     final_results = {}
 
     for target_set in open(input_file_name, 'r'):
@@ -61,7 +61,7 @@ def do(input_file_name, backward_target_length, dest_folder_path):
         try:
             # 결과 임시 저장 dict
             result = {
-                'total_cnt': count_line_in_file(os.path.join(dest_folder_path, file_name)),
+                'total_cnt': count_lines_in_a_file(os.path.join(dest_folder_path, file_name)),
                 'mutated_cnt': 0,
                 'mutated_rates': 0.0,
                 'mutated_dict': {}
