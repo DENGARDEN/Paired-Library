@@ -155,7 +155,17 @@ cython_debug/
 
 
 # example files
-/src/
+
 *.gz
 
+*.DS_Store
+
+*.txt
+
+*.fastq
+/Analysis of indel frequency/src/res
+*.hist
+*.innie
+*.outie
+*.histogram
 *.DS_Store
