@@ -169,3 +169,4 @@ cython_debug/
 *.outie
 *.histogram
 *.DS_Store
+*.xlsx
