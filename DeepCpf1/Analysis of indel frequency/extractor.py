@@ -151,17 +151,18 @@ def do(src_file_name, dest_file_name):
 
 # original code
 if __name__ == "__main__":
-    print("Input barcode file name with extension: ")
-    src_file_name = input()
-    src_file_name = os.path.join(BASE_DIR, "src", src_file_name)
+    # print("Input barcode file name with extension: ")
+    # src_file_name = input()
+    # src_file_name = os.path.join(BASE_DIR, src_file_name)
+    src_file_name = os.path.join(BASE_DIR, "barcode.txt")
 
     if not os.path.isfile(src_file_name):
         print("File Not Found. Check it is in the src directory")
         raise
 
     print("Input sequence file name with extension: ")
-    dest_file_name = input()
-    dest_file_name = os.path.join(BASE_DIR, "src", dest_file_name)
+    dest_file_name = input().strip()
+    # dest_file_name = os.path.join(BASE_DIR, dest_file_name)
 
     if not os.path.isfile(dest_file_name):
         print("File Not Found. Check it is in the src directory")
