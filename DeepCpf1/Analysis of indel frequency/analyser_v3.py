@@ -9,6 +9,7 @@ import os
 from Levenshtein import editops
 # 해당 라이브러리 도큐먼트
 # https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html
+# https://github.com/ztane/python-Levenshtein (updated)
 
 BASE_DIR = os.path.dirname(sys.executable)
 
@@ -113,8 +114,8 @@ def do(input_file_name, backward_target_length, dest_folder_path):
                 f.write('mutation rates : {} %'.format(result['mutated_rates']))
 
         except Exception as e:
-            print e
-            print file_name, ' not found.'
+            print (e)
+            print (file_name, ' not found.')
             pass
         else:
             # 문제 없다면 결과물을 모은다.
@@ -124,7 +125,7 @@ def do(input_file_name, backward_target_length, dest_folder_path):
         cur_cnt += 1
         # 진행율 화면 표시
         progress_percentage = float(cur_cnt) / target_cnt * 100
-        print '{} % done'.format(progress_percentage)
+        print ('{} % done'.format(progress_percentage))
 
         # 최종 결과물 파일 저장.
         with open(os.path.join(result_folder_name, 'result_info.txt'), 'w') as f:
@@ -132,31 +133,31 @@ def do(input_file_name, backward_target_length, dest_folder_path):
                 f.write('{} : {} : {}/{}\n'.format(name, data['mutated_rates'], data['mutated_cnt'], data['total_cnt']))
 
 if __name__ == '__main__':
-    print u'Input file name with extension: '
+    print (u'Input file name with extension: ')
     # 이름 : 와일드시퀀스 : 타겟 으로 구성된 파일을 입력받는다.
-    input_file_name = raw_input()
+    input_file_name = input()
     input_file_name = os.path.join(BASE_DIR, input_file_name)
 
     if not os.path.isfile(input_file_name):
-        print u'File Not Found. Check it is in same folder'
+        print (u'File Not Found. Check it is in same folder')
         raise
 
-    print u'Input length to check mutation from backward of target: '
+    print (u'Input length to check mutation from backward of target: ')
     # 사용자 지정 위치를 입력받는다. 타겟의 제일 위에서부터 ~번째이다.
-    backward_target_length = raw_input()
+    backward_target_length = input()
 
-    print u'Input result folder name: '
+    print (u'Input result folder name: ')
     # 추출기가 뽑아낸 대상시퀀스들이 모여있는 폴더 이름 입력.
-    dest_folder_name = raw_input()
+    dest_folder_name = input()
     dest_folder_name = os.path.join(BASE_DIR, dest_folder_name)
 
     if not os.path.isdir(dest_folder_name):
-        print u'Folder Not Found'
+        print (u'Folder Not Found')
         raise
 
     # 분석시작
     do(input_file_name, backward_target_length, dest_folder_name)
 
-    print u'Well done. Press any key'
-    raw_input()
+    print (u'Well done. Press any key')
+    input()
 
